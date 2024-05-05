@@ -1,0 +1,49 @@
+<aside class="sidebar">
+    <div class="sidebar-scrollable">
+        <div class="inner outer">
+            <div class="widget-area">
+                {{!-- Includes the site navigation - partials/navigation.hbs --}}
+                {{#if @site.navigation}}
+                    <nav class="widget widget-navigation">
+                        <h2 class="widget-title h3">{{t "Explore Website"}}</h2>
+                        {{navigation}}
+                        {{!-- If members enabled and not logged in, show subscribe link --}}
+                        {{#if @site.members_enabled}}
+                            {{#unless @member}}
+                                <a class="subscribe-button button button-solid" href="javascript:" data-portal="signup">{{t "Subscribe"}}</a>
+                            {{/unless}}
+                        {{/if}}
+                    </nav>
+                {{/if}}
+                {{!-- Displays the about widget if enabled in settings --}}
+                {{#if @custom.enable_about_in_sidebar}}
+                    <section class="widget widget-about">
+                        {{#if @custom.about_title}}
+                        <h2 class="widget-title h3">{{@custom.about_title}}</h2>
+                        {{/if}}
+                        {{#if @custom.about_text}}
+                            <p>{{@custom.about_text}}</p>
+                        {{/if}}
+                    </section>
+                {{/if}}
+                <section class="widget widget-tags">
+                    <h2 class="widget-title h3">{{t "Tags"}}</h2>
+                    <div class="tagcloud">
+                        {{#get "tags" limit="all" include="count.posts" order="count.posts desc"}}
+                            {{#foreach tags}}
+                                <a href="/tag/{{slug}}" class="button button-outlined">
+                                    <span class="button-content">
+                                        {{name}}
+                                    </span>
+                                </a>
+                            {{/foreach}}
+                        {{/get}}
+                    </div>
+                </section>
+            </div>
+            <button id="sidebar-hide" class="sidebar-toggle button button-icon" aria-label="{{t "Close"}}">
+                <span class="icon icon-close" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</aside>

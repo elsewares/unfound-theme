@@ -1,0 +1,16 @@
+<footer class="site-footer">
+    <div class="inner outer">
+        {{> "social-links"}}
+        {{#if @site.secondary_navigation}}
+            <nav class="footer-navigation">
+                {{navigation type="secondary"}}
+            </nav>
+        {{/if}}
+        <div class="site-info">
+            <a href="{{@site.url}}">{{@site.title}}</a> &copy; {{date format="YYYY"}}<br /> {{{t "Powered by {ghostlink}. Subtle theme by {jgtlink}." ghostlink="<a target=\"_blank\" href=\"https://ghost.org\" rel=\"noopener\">Ghost</a>" jgtlink="<a target=\"_blank\" href=\"https://justgoodthemes.com/\" rel=\"noopener\">Just Good Themes</a>"}}}
+        </div>
+        <a href="#page" class="back-to-top button button-icon" data-scroll aria-label="{{t "Back to the top"}}">
+            {{> "icons/chevron-up"}}
+        </a>
+    </div>
+</footer>

@@ -1,0 +1,93 @@
+{
+  "name": "subtle",
+  "description": "Elegant, minimal, content focus one column Ghost theme.",
+  "version": "3.1.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "screenshots": {
+    "desktop": "assets/screenshot-desktop.jpg",
+    "mobile": "assets/screenshot-mobile.jpg"
+  },
+  "author": {
+    "name": "Just Good Themes",
+    "email": "hello@justgoodthemes.com",
+    "url": "https://justgoodthemes.com"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 8,
+    "card_assets": {
+      "exclude": ["blockquote", "bookmark", "gallery"]
+    },
+    "image_sizes": {
+      "xxs": {
+        "width": 45
+      },
+      "xs": {
+        "width": 90
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 800
+      },
+      "xl": {
+        "width": 1600
+      },
+      "xxl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "enable_about_in_sidebar": {
+        "type": "boolean",
+        "default": true
+      },
+      "about_title": {
+        "type": "text",
+        "default": "About"
+      },
+      "about_text": {
+        "type": "text",
+        "default": "Subtle is a simple & elegant Ghost theme for writers and bloggers. Feedback, questions, or ideas? Drop us a line via email."
+      },
+      "hero_title": {
+        "type": "text",
+        "default": "Hello & Welcome to Subtle",
+        "group": "homepage"
+      },
+      "hero_text": {
+        "type": "text",
+        "default": "Subtle is an online magazine / blog dedicated to modern design, art, architecture, interior design, fashion and technology.",
+        "group": "homepage"
+      },
+      "hero_button_label": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "hero_button_url": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "enable_disqus": {
+        "type": "boolean",
+        "default": false,
+        "group": "post"
+      },
+      "disqus_shortname": {
+        "type": "text",
+        "default": "",
+        "group": "post"
+      }
+    }
+  }
+}

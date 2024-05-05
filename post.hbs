@@ -1,0 +1,123 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+<main id="main" class="site-content">
+    <article class="post-full {{post_class}}">
+        <header class="cover cover-large post-header outer">
+            {{#if feature_image}}
+                <div class="cover-bg">
+                    <img class="cover-bg-img" srcset="{{img_url feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 800w, {{img_url feature_image size="xl"}} 1600w, {{img_url feature_image size="xxl"}} 2000w" sizes="100vw" src="{{img_url feature_image size="xl"}}" alt="{{title}}" />
+                </div>
+            {{/if}}
+            <div class="cover-content inner">
+                {{#if tags}}
+                    <div class="post-tags">
+                        {{tags separator=" "}}
+                    </div>
+                {{/if}}
+                <h1 class="post-title underline">{{title}}</h1>
+                <div class="post-reading-time">
+                    {{reading_time minute=(t "Read in 1 min") minutes=(t "Read in % min")}}
+                </div>
+                <div class="post-byline">
+                    {{#foreach authors limit="2"}}
+                        {{#if profile_image}}
+                            <a href="{{url}}" class="post-author-avatar">
+                                <img class="avatar" srcset="{{img_url profile_image size="xs"}}, {{img_url profile_image size="s"}} 2x" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                            </a>
+                        {{/if}}
+                    {{/foreach}}
+                    <div class="post-byline-content">
+                        <div class="post-author">
+                            {{t "By"}}
+                            {{#has author="count:1"}}
+                                {{authors}}
+                            {{else has author="count:2"}}
+                                {{authors separator=(t " and ")}}
+                            {{else has author="count:>2"}}
+                                {{authors separator=(t ", ")limit="2"}}
+                                {{t "and others"}}
+                            {{/has}}
+                        </div>
+                        <div class="post-date">
+                            <time class="published" datetime="{{date format='YYYY-MM-DD'}}">{{date format="MMMM DD, YYYY"}}</time>
+                        </div>
+                    </div>
+                </div>
+                <a href="#post-content" class="cover-scroll-down button button-icon" data-scroll aria-label="{{t "Scroll Down"}}">
+                    {{> "icons/chevron-down"}}
+                </a>
+            </div>
+        </header>
+        {{!-- If the user has access, show post content --}}
+        {{#if access}}
+            <div id="post-content" class="post-content">
+                {{content}}
+            </div>
+        {{!-- If the user has no access, show subscribe cta --}}
+        {{else}}
+            {{> "members-cta"}}
+        {{/if}}
+        <div class="outer">
+            <footer class="post-footer share-post inner">
+                <span>{{t "Share:"}}</span>
+                <a class="button button-social" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}" aria-label="{{t "Share on Twitter"}}">
+                    {{> "icons/twitter"}}
+                </a>
+                <a class="button button-social" target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u={{url absolute="true"}}" aria-label="{{t "Share on Facebook"}}">
+                    {{> "icons/facebook"}}
+                </a>
+                <a class="button button-social" target="_blank" rel="noopener" href="mailto:?subject={{encode title}}&amp;body={{url absolute="true"}}" aria-label="{{t "Share via email"}}">
+                    {{> "icons/envelope"}}
+                </a>
+            </footer>
+        </div>
+    </article>
+    {{!-- Includes the Disqus comments - partials/comments.hbs --}}
+    {{#if @custom.enable_disqus}}
+        {{#if @custom.disqus_shortname}}
+            {{> "comments-disqus"}}
+        {{/if}}
+    {{!-- If Disqus not enabled and Ghost comments enabled, include ghost comments - partials/comments.hbs --}}
+    {{else}}
+        {{#if comments}}
+            {{> comments}}
+        {{/if}}
+    {{/if}}
+    {{!-- Previous/next post links --}}
+    <nav class="post-navigation" aria-label="{{t "Read Next"}}">
+        <div class="nav-links">
+            {{#next_post}}
+                <a href="{{url}}" class="nav-next">
+                    {{#if feature_image}}
+                        <div class="nav-bg">
+                            <img srcset="{{img_url feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 800w, {{img_url feature_image size="xl"}} 1600w, {{img_url feature_image size="xxl"}} 2000w" sizes="(max-width: 800px) 100vw, 50vw" src="{{img_url feature_image size="l"}}" alt="{{title}}" />
+                        </div>
+                    {{/if}}
+                    <div class="nav-inside outer">
+                        <div class="nav-before">{{t "Next"}}</div>
+                        <div class="nav-title h3">{{title}}</div>
+                        <div class="nav-date">{{date format="MMMM DD, YYYY"}}</div>
+                    </div>
+                </a>
+            {{/next_post}}
+            {{#prev_post}}
+                <a href="{{url}}" class="nav-previous">
+                    {{#if feature_image}}
+                        <div class="nav-bg">
+                            <img srcset="{{img_url feature_image size="s"}} 300w, {{img_url feature_image size="m"}} 600w, {{img_url feature_image size="l"}} 800w, {{img_url feature_image size="xl"}} 1600w, {{img_url feature_image size="xxl"}} 2000w" sizes="(max-width: 800px) 100vw, 50vw" src="{{img_url feature_image size="l"}}" alt="{{title}}" />
+                        </div>
+                    {{/if}}
+                    <div class="nav-inside outer">
+                        <div class="nav-before">{{t "Previous"}}</div>
+                        <div class="nav-title h3">{{title}}</div>
+                        <div class="nav-date">{{date format="MMMM DD, YYYY"}}</div>
+                    </div>
+                </a>
+            {{/prev_post}}
+        </div>
+    </nav>
+</main>
+{{/post}}

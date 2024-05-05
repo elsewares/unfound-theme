@@ -1,0 +1,56 @@
+{{!-- The post feed loop --}}
+<div id="post-list" class="post-list outer">
+    <div class="inner">
+        {{#foreach posts visibility="all"}}
+            <article class="{{post_class}}">
+                <header class="post-header">
+                    {{#if tags}}
+                        <div class="post-tags">
+                            {{tags separator=" "}}
+                        </div>
+                    {{/if}}
+                    <div class="post-header-group">
+                        <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
+                        <div class="post-byline">
+                            {{#foreach authors limit="2"}}
+                                {{#if profile_image}}
+                                    <a href="{{url}}" class="post-author-avatar">
+                                        <img class="avatar" srcset="{{img_url profile_image size="xxs"}}, {{img_url profile_image size="xs"}} 2x" src="{{img_url profile_image size="xxs"}}" alt="{{name}}" />
+                                    </a>
+                                {{/if}}
+                            {{/foreach}}
+                            <div class="post-byline-content">
+                                <div class="post-author">
+                                    {{t "By"}}
+                                    {{#has author="count:1"}}
+                                        {{authors}}
+                                    {{else has author="count:2"}}
+                                        {{authors separator=(t " and ")}}
+                                    {{else has author="count:>2"}}
+                                        {{authors separator=(t ", ")limit="2"}}
+                                        {{t "and others"}}
+                                    {{/has}}
+                                </div>
+                                <div class="post-date">
+                                    <time class="published" datetime="{{date format='YYYY-MM-DD'}}">{{date format="MMMM DD, YYYY"}}</time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="post-excerpt">
+                    <p>{{excerpt words="50"}}</p>
+                    <div class="post-read-more">
+                        <a class="button button-outlined" href="{{url}}">
+                            <span class="button-content">
+                                {{t "Read More"}}
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        {{/foreach}}
+    </div>
+</div>
+{{!-- Previous/next page links --}}
+{{pagination}}

@@ -1,0 +1,24 @@
+{{#if html}}
+    <div class="post-teaser">
+        {{{html}}}
+    </div>
+{{/if}}
+<div class="outer">
+    <aside class="subscribe-cta inner">
+        {{#has visibility="paid"}}
+            <h2 class="subscribe-cta-title h3">{{t "This post is for paying subscribers only"}}</h2>
+        {{/has}}
+        {{#has visibility="members"}}
+            <h2 class="subscribe-cta-title h3">{{t "This post is for subscribers only"}}</h2>
+        {{/has}}
+        {{#has visibility="tiers"}}
+            <h2 class="subscribe-cta-title h3">{{plural tiers.length empty=(t "This post is for subscribers only") singular=(t "This post is for subscribers on the tier") plural=(t "This post is for subscribers on the tiers")}} {{tiers lastSeparator=(t " and ") suffix=""}}</h2>
+        {{/has}}
+        {{#if @member}}
+            <a class="button button-solid" href="javascript:" data-portal="account/plans">{{t "Upgrade your account"}}</a>
+        {{else}}
+            <a class="button button-solid" href="javascript:" data-portal="signup">{{t "Subscribe now"}}</a>
+            <p class="subscribe-cta-note">{{t "Already have an account?"}} <a href="javascript:" data-portal="signin">{{t "Sign in"}}</a></p>
+        {{/if}}
+    </aside>
+</div>

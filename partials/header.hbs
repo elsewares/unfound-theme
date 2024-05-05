@@ -1,0 +1,55 @@
+<header class="site-header{{#is "page"}}{{^match @page.show_title_and_feature_image}} site-header-dark{{/match}}{{/is}}{{#is "index"}}{{#is "paged"}} site-header-dark{{/is}}{{/is}} outer">
+    <div class="site-header-inside">
+        {{#if @site.logo}}
+            <a class="site-logo" href="{{@site.url}}"><img src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}" /></a>
+        {{/if}}
+        {{#is "index"}}
+            <h1 class="site-title h3{{#if @site.logo}} screen-reader-text{{/if}}"><a href="{{@site.url}}">{{@site.title}}</a></h1>
+        {{else}}
+            <p class="site-title h3{{#if @site.logo}} screen-reader-text{{/if}}"><a href="{{@site.url}}">{{@site.title}}</a></p>
+        {{/is}}
+        <nav class="header-navigation">
+            <ul class="actions">
+                {{!-- If members enabled, show member related menu items --}}
+                {{#if @site.members_enabled}}
+                     {{!-- Not logged in: show subscribe and sign in links --}}
+                    {{#unless @member}}
+                        <li class="action-item action-item-subscribe">
+                            <a class="button button-link" href="javascript:" data-portal="signup">
+                                {{t "Subscribe"}}
+                            </a>
+                        </li>
+                        <li class="action-item action-item-signin">
+                            <a class="button button-link" href="javascript:" data-portal="signin">
+                                {{t "Sign in"}}
+                            </a>
+                            <a class="button button-icon" href="javascript:" data-portal="signin" aria-label="{{t "Sign in"}}">
+                                {{> "icons/user"}}
+                            </a>
+                        </li>
+                    {{!-- Logged in: show account link --}}
+                    {{else}}
+                        <li class="action-item action-item-account">
+                            <a class="button button-link" href="javascript:" data-portal="account">
+                                {{t "My Account"}}
+                            </a>
+                            <a class="button button-icon" href="javascript:" data-portal="account" aria-label="My Account">
+                                {{> "icons/user"}}
+                            </a>
+                        </li>
+                    {{/unless}}
+                {{/if}}
+                <li class="action-item action-item-search">
+                    <button class="button button-icon" aria-label="{{t "Search"}}" data-ghost-search>
+                        {{> "icons/search"}}
+                    </button>
+                </li>
+                <li class="action-item action-item-sidebar">
+                    <button class="button button-icon sidebar-toggle" aria-label="{{t "Menu"}}">
+                        <span class="icon icon-menu" aria-hidden="true"></span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,31 @@
+{{!-- Social links list --}}
+<div class="social-links">
+    {{#if @site.twitter}}
+        <a href="{{twitter_url}}" class="button button-social" aria-label="Twitter" target="_blank" rel="noopener">
+            {{> "icons/twitter"}}
+        </a>
+    {{/if}}
+    {{#if @site.facebook}}
+        <a href="{{facebook_url}}" class="button button-social" aria-label="Facebook" target="_blank" rel="noopener">
+            {{> "icons/facebook"}}
+        </a>
+    {{/if}}
+    {{!--
+    <a href="https://www.instagram.com/" class="button button-social" aria-label="Instagram" target="_blank" rel="noopener">{{> "icons/instagram"}}</a>
+    --}}
+    {{!--
+    <a href="https://www.linkedin.com/" class="button button-social" aria-label="LinkedIn" target="_blank" rel="noopener">{{> "icons/linkedin"}}</a>
+    --}}
+    {{!--
+    <a href="https://github.com/" class="button button-social" aria-label="GitHub" target="_blank" rel="noopener">{{> "icons/github"}}</a>
+    --}}
+    {{!--
+    <a href="{{@site.url}}/rss/" class="button button-social" aria-label="RSS" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
+    --}}
+    {{!--
+    <a href="https://dev.to/" class="button button-social" aria-label="Dev" target="_blank" rel="noopener">{{> "icons/devdotto"}}</a>
+    --}}
+    {{!--
+    <a href="https://codepen.io/" class="button button-social" aria-label="CodePen" target="_blank" rel="noopener">{{> "icons/codepen"}}</a>
+    --}}
+</div>
